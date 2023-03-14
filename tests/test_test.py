@@ -18,3 +18,21 @@ class TestStringMethods(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+# temperature = float(input('What is a temperature today? '))
+
+# if temperature > 30:
+#     print("It's hot today")
+# elif temperature > 20:   # (20 , 30]
+#     print("That's a good day")
+# elif temperature > 10: # (10, 20]
+#     print("It's a little bit cold")
+# else:
+#     print("This day is a cold day")
+# print ("Done")
+
+# i = 1
+# j = 9
+# while i <= 10:
+#     print((j * ' ') + (i * '*') + ((i - 1) * "*"))
+#     i += 1
+#     j -= 1
