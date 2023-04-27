@@ -5,7 +5,7 @@ const gitHubApi = new GitHubAPIClient();
 
 describe('API Tests of response for search repos on GitHub', function() {
     it('test response status for existed repo search request', async function() {
-        expect(await gitHubApi.repoSearchResponseStatus()).to.be.ok;
+        expect(await gitHubApi.repoSearchResponseStatus()).to.equal(200);
     });
     it('test a response body type of search result is an object', async function() {
         expect(await gitHubApi.repoSearchResponseType()).to.be.an('object')
