@@ -6,5 +6,3 @@ export class BaseAPP {
           driver.get('https://github.com/login')
     }
 }
-const go = new BaseAPP();
-go.goTo()

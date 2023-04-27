@@ -18,5 +18,3 @@ export class GitHubUiClient extends BaseAPP{
         await this.driver.quit();
     }
 }
-const go = new GitHubUiClient();
-go.goTo
