@@ -1,4 +1,4 @@
-import {Builder, By, Key, until} from 'selenium-webdriver';
+import { Builder, By, Key, until } from 'selenium-webdriver';
 import { BaseAPP } from '../../applications/ui/BaseApp.js';
 export class GitHubUiClient extends BaseAPP{
     constructor(driver = undefined) {

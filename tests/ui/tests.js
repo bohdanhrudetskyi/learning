@@ -1,4 +1,4 @@
-import {GitHubUiClient}  from "../../src/applications/ui/GitHubUiClient.js";
+import { GitHubUiClient }  from "../../src/applications/ui/GitHubUiClient.js";
 import chai from 'chai/chai.js';
 const { expect } = chai;
 const browser = new GitHubUiClient();

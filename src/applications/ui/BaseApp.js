@@ -1,4 +1,4 @@
-import {BrowsersProvider} from "../../providers/service/browsers/browsersProvider.js"
+import { BrowsersProvider } from "../../providers/service/browsers/browsersProvider.js"
 
 export class BaseAPP {
     async goTo() {
