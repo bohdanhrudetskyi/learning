@@ -18,11 +18,12 @@ export class BaseAPP {
             driverPromise.findElement(By.id(locator)).click();
           });
     }
-    async clickOnElementByXPath(locator, countOfElements) {
+    async clickOnElementByXPath(locator, countOfElements, delay) {
         for(let i = 0; i < countOfElements; i++) {
+            await new Promise((resolve) => setTimeout(resolve, delay));
             this.driverPromise.then((driverPromise) => {
                 driverPromise.findElement(By.xpath(locator)).click()
-        });
+            });
         }
     }
     async typeText(locator, text) {

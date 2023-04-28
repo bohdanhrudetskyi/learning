@@ -16,8 +16,8 @@ export class HerokuAppUiClient extends BaseAPP{
     async openAddRemovePage() {
         super.goTo(this.startPage + this.addRemovePage);
     }
-    async clickOnAddElement(countOfElements = 1) {
-        super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
+    async clickOnAddElement(countOfElements = 1, delay = 2) {
+        super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements, delay * 1000);
     }
     async clickUsernameField() {
         super.clickOnElementById(this.usernameFieldId);
