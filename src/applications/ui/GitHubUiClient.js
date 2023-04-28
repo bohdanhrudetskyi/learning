@@ -1,12 +1,12 @@
-import {Builder, By, Key, until} from 'selenium-webdriver';
+import { Builder, By, Key, until } from 'selenium-webdriver';
 import { BaseAPP } from '../../applications/ui/BaseApp.js';
 export class GitHubUiClient extends BaseAPP{
-    constructor(driver = undefined) {
+    constructor(driver) {
+        super(driver);
         this.loginPage = 'https://github.com/login';
     }
-    async openPage() {
-        const page = new GitHubUiClient().goTo(this.loginPage)
-        return page
+    async openLoginPage() {
+        super.driver.goTo(this.loginPage)
     }
     async inputUsername(username) {
         await this.driver.findElement(By.name('login')).sendKeys(username);
@@ -18,3 +18,5 @@ export class GitHubUiClient extends BaseAPP{
         await this.driver.quit();
     }
 }
+const go = new GitHubUiClient();
+go.openLoginPage()

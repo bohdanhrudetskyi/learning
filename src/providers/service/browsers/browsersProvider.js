@@ -11,7 +11,7 @@ export class BrowsersProvider {
         if(!browser) {
             throw new Error('Browser not supported')
         }
-        const driver = browser.getDriver();
+        const driver = await browser.getDriver();
         return driver
     }
 }

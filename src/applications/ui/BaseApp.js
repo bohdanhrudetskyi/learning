@@ -1,8 +1,14 @@
-import {BrowsersProvider} from "../../providers/service/browsers/browsersProvider.js"
+import { BrowsersProvider } from "../../providers/service/browsers/browsersProvider.js"
 
-export class BaseAPP {
-    async goTo() {
-          const driver = await new BrowsersProvider().getDriver('chrome');
-          driver.get('https://github.com/login')
+export class BaseAPP {     
+    constructor(response) {
+        this.driver = new BrowsersProvider().getDriver('chrome');
+        this.response = response
+    }
+    async goTo(browserPage) {
+          response = await this.driver.get(browserPage);
+          return response
     }
 }
+const hut = new BaseAPP();
+hut.goTo('https://github.com/login')
