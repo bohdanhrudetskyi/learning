@@ -8,8 +8,8 @@ export class BaseAPP {
     }
 
     async goTo(browserPage) {
-          this.driverPromise.then((driverPromise) => {
-            driverPromise.get(browserPage);
+         return this.driverPromise.then((driverPromise) => {
+             driverPromise.get(browserPage);
           });
     }
 

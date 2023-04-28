@@ -6,9 +6,9 @@ const browser = new HerokuAppUiClient();
 
 describe('UI Tests for Add/Remove elements page', function() {
   it('test Add/Remove page for adding objects', async function() {
-      await browser.openAddRemovePage();
-      // const pageTitle = await driver.getTitle();
-      // expect(pageTitle).to.equal('The Internet')
+      const driver = await browser.openAddRemovePage();
+      const title = await driver.getTitle();
+      expect(title).to.equal('The Internet')
       //await browser.clickOnAddElement(5, 10);
       //await browser.clickPasswordField();
       //await browser.quitFromBrowser();
