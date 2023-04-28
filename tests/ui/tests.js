@@ -1,12 +1,14 @@
-import { GitHubUiClient }  from "../../src/applications/ui/GitHubUiClient.js";
+import { HerokuAppUiClient }  from "../../src/applications/ui/HerokuAppUiClient.js";
 import chai from 'chai/chai.js';
 const { expect } = chai;
-const browser = new GitHubUiClient();
+const browser = new HerokuAppUiClient();
 
-describe('UI Tests for GitHub login page', function() {
-  it('test inputs for GitHub login page', async function() {
-      await browser.goTo();
-      // await gitHubUi.inputUsername('john');
+describe('UI Tests for Add/Remove elements page', function() {
+  it('test Add/Remove page for adding objects', async function() {
+      await browser.openAddRemovePage();
+      await browser.clickOnAddElement(2);
+      //await browser.clickPasswordField();
+      //await browser.quitFromBrowser();
       // await gitHubUi.inputPassword('pass');
       //await gitHubUi.quit();
       //expect(dataInserted).to.be.a('john');

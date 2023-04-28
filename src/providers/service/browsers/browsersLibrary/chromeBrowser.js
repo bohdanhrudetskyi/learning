@@ -1,6 +1,7 @@
 //import  WebDriverManager from 'webdriver-manager'
 import chrome from 'selenium-webdriver/chrome.js'
 import { Builder } from 'selenium-webdriver'
+
 export class ChromeBrowser {
     async getDriver() {
         // const manager = new WebDriverManager();
@@ -9,6 +10,7 @@ export class ChromeBrowser {
         //  const options = new chrome.Options();
         //const driver = await new Builder().setChromeOptions(options).setChromeService(service).forBrowser('chrome').build();
         const driver = await new Builder().forBrowser('chrome').build();
+        
         return driver
     }
 }
