@@ -18,13 +18,11 @@ export class HerokuAppUiClient extends BaseAPP{
         await super.goTo(this.startPage + this.addRemovePage);
         return this.driverPromise
     }
-    async clickOnAddElementButton(countOfElements = 1, delay = 2) {
-        super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements, delay * 1000);
-        return this.driverPromise
+    async clickOnAddElementButton(countOfElements = 1) {
+        super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
     }
     async countOfDeleteButtons() {
-        const countOfElements = super.findElementsByClass(this.deleteButtonClass);
-        return countOfElements
+        return super.waitForNewElementsToAppear(this.deleteButtonClass)
     }
     async clickPasswordField() {
         super.clickOnElementById(this.passwordFieldId);
