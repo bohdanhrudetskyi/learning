@@ -4,7 +4,12 @@ import { By } from 'selenium-webdriver'
 export class BaseAPP {
 
     constructor() {
-        this.driverPromise = new BrowsersProvider().getDriver('chrome');
+        this.driverPromise = null;
+    }
+
+    async openBrowser(browserName) {
+        const provider = new BrowsersProvider();
+        this.driverPromise = provider.getDriver(browserName);
     }
 
     async goTo(browserPage) {
@@ -19,12 +24,14 @@ export class BaseAPP {
         });
     }
 
-    async clickOnElementById(locator) {
-        this.driverPromise.then((driverPromise) => {
-            driverPromise.findElement(By.id(locator)).click();
-        });
+    async clickOnElementByClass(locator, countOfTimes) {
+        for (let i = 0; i < countOfTimes; i++) {
+             this.driverPromise.then((driverPromise) => {
+                 driverPromise.findElement(By.className(locator)).click()
+            })
+        }
     }
-    
+
     async clickOnElementByXPath(locator, countOfElements) {
         for (let i = 0; i < countOfElements; i++) {
             this.driverPromise.then((driverPromise) => {
@@ -47,9 +54,8 @@ export class BaseAPP {
     }
 
     async findElementsByClass(locator) {
-        return this.driverPromise.then((driverPromise) => {
-            return driverPromise.findElements(By.className(locator));
-        })
+        const driver = await this.driverPromise;
+        return driver.findElements(By.className(locator));
     }
 
     async typeText(locator, text) {
@@ -59,7 +65,7 @@ export class BaseAPP {
     }
 
     async quit() {
-        this.driverPromise.then((driverPromise) => {
+        return this.driverPromise.then((driverPromise) => {
             driverPromise.quit();
         });
     }

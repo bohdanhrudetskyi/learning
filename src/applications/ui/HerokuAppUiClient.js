@@ -10,33 +10,50 @@ export class HerokuAppUiClient extends BaseAPP{
         this.passwordFieldId = 'password';
         this.deleteButtonClass = 'added-manually',
         this.forgotPasswordButtonClass = 'label-link position-absolute top-0 right-0';
+        this.browser = 'chrome';
     }
+    async startBrowser() {
+        await super.openBrowser(this.browser)
+    }
+
     async openHomePage() {
-        super.goTo(this.startPage);
+        await super.goTo(this.startPage);
     }
+
     async openAddRemovePage() {
         await super.goTo(this.startPage + this.addRemovePage);
         return this.driverPromise
     }
+
     async clickOnAddElementButton(countOfElements = 1) {
         super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
     }
+
+    async clickDeleteButton(countOfTimes = 1) {
+        super.clickOnElementByClass(this.deleteButtonClass, countOfTimes)
+    }
+
     async countOfDeleteButtons() {
         return super.waitForNewElementsToAppear(this.deleteButtonClass)
     }
+
     async clickPasswordField() {
         super.clickOnElementById(this.passwordFieldId);
     }
+
     async clickForgorPasswordButton() {
         super.clickOnElementById(this.forgotPasswordButtonClass);
     }
+
     async inputUsernameField(text) {
         super.typeText(this.usernameFieldId, text);
     }
+
     async inputPasswordField(text) {
         super.typeText(this.passwordFieldId, text);
     }
+
     async quitFromBrowser() {
-        super.quit();
+        return super.quit();
     }
 }
