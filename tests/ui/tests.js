@@ -1,21 +1,23 @@
 import { HerokuAppUiClient }  from "../../src/applications/ui/HerokuAppUiClient.js";
-import { BaseAPP } from "../../src/applications/ui/BaseApp.js";
+import { By } from 'selenium-webdriver'
 import chai from 'chai/chai.js';
 const { expect } = chai;
 const browser = new HerokuAppUiClient();
 
 describe('UI Tests for Add/Remove elements page', function() {
-  it('test Add/Remove page for adding objects', async function() {
+  it('test title Add/Remove page', async function() {
       const driver = await browser.openAddRemovePage();
       const title = await driver.getTitle();
       expect(title).to.equal('The Internet')
-      //await browser.clickOnAddElement(5, 10);
-      //await browser.clickPasswordField();
-      //await browser.quitFromBrowser();
-      // await gitHubUi.inputPassword('pass');
-      //await gitHubUi.quit();
-      //expect(dataInserted).to.be.a('john');
   });
+  it('test Add Element button', async function() {
+    await browser.openAddRemovePage();
+    await browser.clickOnAddElementButton(5);
+    const count = await browser.countOfDeleteButtons();
+    console.log(count)
+    //expect(buttons).to.equal(5)
+    //expect(dataInserted).to.be.a('john');
+});
   // it('test a response body type of search result is an object', async function() {
   //     expect(await gitHubUi.repoSearchResponseType()).to.be.an('object')
   // });

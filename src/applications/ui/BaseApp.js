@@ -26,6 +26,12 @@ export class BaseAPP {
             });
         }
     }
+    async findElementsByClass(locator) {
+        this.driverPromise.then((driverPromise) => {
+            driverPromise.findElements(By.className(locator))
+        });
+        return driverPromise
+    }
     async typeText(locator, text) {
         this.driverPromise.then((driverPromise) => {
             driverPromise.findElement(By.id(locator)).sendKeys(text);
