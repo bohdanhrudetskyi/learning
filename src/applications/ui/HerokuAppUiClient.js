@@ -8,7 +8,7 @@ export class HerokuAppUiClient extends BaseAPP{
         this.newObjectButtonXPath = '//*[@id="content"]/div/button';
         this.usernameFieldId = 'login_field';
         this.passwordFieldId = 'password';
-        this.deleteButtonClass = 'added-manually',
+        this.deleteButtonCss = '.added-manually',
         this.forgotPasswordButtonClass = 'label-link position-absolute top-0 right-0';
         this.browser = 'chrome';
     }
@@ -30,11 +30,11 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async clickDeleteButton(countOfTimes = 1) {
-        super.clickOnElementByClass(this.deleteButtonClass, countOfTimes)
+        super.clickOnElementByCss(this.deleteButtonCss, countOfTimes)
     }
 
     async countOfDeleteButtons() {
-        return super.waitForNewElementsToAppear(this.deleteButtonClass)
+        return super.waitForNewElementsToAppear(this.deleteButtonCss)
     }
 
     async clickPasswordField() {

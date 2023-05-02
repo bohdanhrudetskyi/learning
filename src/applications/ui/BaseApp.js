@@ -24,11 +24,12 @@ export class BaseAPP {
         });
     }
 
-    async clickOnElementByClass(locator, countOfTimes) {
+    async clickOnElementByCss(locator, countOfTimes) {
+        const driver = await this.driverPromise;
+        const deleteButtons = await driver.findElements(By.css(locator));
         for (let i = 0; i < countOfTimes; i++) {
-             this.driverPromise.then((driverPromise) => {
-                 driverPromise.findElement(By.className(locator)).click()
-            })
+            await deleteButtons[i].click();
+            driver.sleep(500)
         }
     }
 
@@ -44,7 +45,7 @@ export class BaseAPP {
         const driver = await this.driverPromise;
         const startTime = new Date().getTime();
         while(new Date().getTime() - startTime < timeout) {
-            const elements = await driver.findElements(By.className(locator));
+            const elements = await driver.findElements(By.css(locator));
             if(elements.length > 0) {
                 return elements;
             }
