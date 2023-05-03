@@ -3,6 +3,8 @@ import {
     VALID_SEARCH_REPO_NAME,
     VALID_USERNAME,
     VALID_PASSWORD,
+    INVALID_USERNAME,
+    INVALID_PASSWORD,
     EXPECTED_SUCCESS_LOGIN_TEXT
 } from "../../src/libraries/constants.js"
 //------------This is a random generator for buttons clicking------------------
@@ -15,5 +17,7 @@ export {
     VALID_SEARCH_REPO_NAME,
     VALID_USERNAME,
     VALID_PASSWORD,
+    INVALID_USERNAME,
+    INVALID_PASSWORD,
     EXPECTED_SUCCESS_LOGIN_TEXT
 }

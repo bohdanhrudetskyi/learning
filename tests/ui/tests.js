@@ -54,9 +54,11 @@ describe('UI Tests for Basic authentication page', function() {
       expect(authText).to.equal(library.EXPECTED_SUCCESS_LOGIN_TEXT)
   });
 
-  // it('test count of founded repos in search result is greater than 0', async function() {
-  //     expect(await gitHubUi.repoSearchResponseResultCount()).to.be.gt(0)
-  // });
+  it('test of login with invalid credentials', async function() {
+    await browser.openBasicAuthPage(library.INVALID_USERNAME, library.INVALID_PASSWORD);
+    const authText = await browser.findAuthNotSuccessText();
+    expect(authText).to.equal(0)
+  });
   // it('test response body for existed property name "total_count"', async function() {
   //     expect(await gitHubUi.repoSearchResponse()).to.have.own.property('total_count');
   // });

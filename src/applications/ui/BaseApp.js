@@ -65,14 +65,21 @@ export class BaseAPP {
         return driver.findElements(By.className(locator));
     }
 
-    async findElementByCss(locator) {
+    async findElementsByCss(locator) {
         const driver = await this.driverPromise;
-        const response = driver.findElement(By.css(locator));
-
+        const elements = await driver.findElements(By.css(locator));
+        const texts = [];
+        if(elements.length == 0) {
+            return texts.length
+        } else {
+            for (let element of elements) {
+                texts.push(await element.getText());
+            }
+        }
         return {
-            response,
+            texts,
             getText: async function() {
-                return response.getText()
+                return texts[0]
             }
         }
     }

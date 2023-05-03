@@ -52,7 +52,11 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async findAuthSuccessText() {
-        return super.findElementByCss(this.basicAuthTextTag);
+        return super.findElementsByCss(this.basicAuthTextTag);
+    }
+
+    async findAuthNotSuccessText() {
+        return super.findElementsByCss(this.basicAuthTextTag);
     }
 
     async inputUsernameField(text) {
