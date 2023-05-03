@@ -1,10 +1,11 @@
-import { Builder, By, Key, until } from 'selenium-webdriver';
 import { BaseAPP } from './BaseApp.js';
 export class HerokuAppUiClient extends BaseAPP{
     constructor(driver) {
         super(driver);
         this.startPage = 'http://the-internet.herokuapp.com';
         this.addRemovePage = '/add_remove_elements/',
+        this.basicAuthPage = '/basic_auth',
+        this.basicAuthTextTag = '#content > div > p',
         this.newObjectButtonXPath = '//*[@id="content"]/div/button';
         this.usernameFieldId = 'login_field';
         this.passwordFieldId = 'password';
@@ -25,12 +26,17 @@ export class HerokuAppUiClient extends BaseAPP{
         return this.driverPromise
     }
 
+    async openBasicAuthPage(username, password) {
+        await super.goTo('https://' +username+ ':' +password+ '@' + 'the-internet.herokuapp.com' + this.basicAuthPage);
+        return this.driverPromise
+    }
+
     async clickOnAddElementButton(countOfElements = 1) {
         super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
     }
 
     async clickDeleteButton(countOfTimes = 1) {
-        super.clickOnElementByCss(this.deleteButtonCss, countOfTimes)
+        return super.clickOnElementByCss(this.deleteButtonCss, countOfTimes)
     }
 
     async countOfDeleteButtons() {
@@ -43,6 +49,10 @@ export class HerokuAppUiClient extends BaseAPP{
 
     async clickForgorPasswordButton() {
         super.clickOnElementById(this.forgotPasswordButtonClass);
+    }
+
+    async findAuthSuccessText() {
+        return super.findElementByCss(this.basicAuthTextTag);
     }
 
     async inputUsernameField(text) {

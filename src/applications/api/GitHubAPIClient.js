@@ -1,28 +1,28 @@
 import fetch from 'node-fetch';
-import { validSearchRepoName } from '../../libraries/repoSearchConstants.js';
+import * as library from "../../libraries/testLib.js"
 export class GitHubAPIClient {
     constructor() {
         this.baseUrl = `https://api.github.com`
     }
-    async repoSearchResponse(repoName = validSearchRepoName) {
+    async repoSearchResponse(repoName = library.VALID_SEARCH_REPO_NAME) {
         const url = `${this.baseUrl}/search/repositories?q=${repoName})`;
         const responseNew = await fetch(url)
         .then(respStatus => respStatus.json())
         return responseNew
     }
-    async repoSearchResponseStatus(repoName = validSearchRepoName) {
+    async repoSearchResponseStatus(repoName = library.VALID_SEARCH_REPO_NAME) {
         const url = `${this.baseUrl}/search/repositories?q=${repoName})`;
         const responseNew = await fetch(url)
         .then(respStatus => respStatus.status)
         return responseNew
     }
-    async repoSearchResponseType(repoName = validSearchRepoName) {
+    async repoSearchResponseType(repoName = library.VALID_SEARCH_REPO_NAME) {
         const url = `${this.baseUrl}/search/repositories?q=${repoName})`;
         const responseNew = await fetch(url)
         .then(respStatus => respStatus.json())
         return responseNew
     }
-    async repoSearchResponseResultCount(repoName = validSearchRepoName) {
+    async repoSearchResponseResultCount(repoName = library.VALID_SEARCH_REPO_NAME) {
         const url = `${this.baseUrl}/search/repositories?q=${repoName})`;
         const responseNew = await fetch(url)
         .then(respStatus => respStatus.json())

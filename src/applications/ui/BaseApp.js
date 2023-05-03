@@ -26,10 +26,16 @@ export class BaseAPP {
 
     async clickOnElementByCss(locator, countOfTimes) {
         const driver = await this.driverPromise;
-        const deleteButtons = await driver.findElements(By.css(locator));
-        for (let i = 0; i < countOfTimes; i++) {
-            await deleteButtons[i].click();
-            driver.sleep(500)
+        let deleteButtons = await driver.findElements(By.css(locator));
+        for (let i = 0; i < countOfTimes; i++) {            
+            await deleteButtons[0].click();
+            deleteButtons = await driver.findElements(By.css(locator));
+        }
+
+        return {
+            returnCountAfterClicking: function() {
+                return deleteButtons.length
+            }
         }
     }
 
@@ -57,6 +63,18 @@ export class BaseAPP {
     async findElementsByClass(locator) {
         const driver = await this.driverPromise;
         return driver.findElements(By.className(locator));
+    }
+
+    async findElementByCss(locator) {
+        const driver = await this.driverPromise;
+        const response = driver.findElement(By.css(locator));
+
+        return {
+            response,
+            getText: async function() {
+                return response.getText()
+            }
+        }
     }
 
     async typeText(locator, text) {
