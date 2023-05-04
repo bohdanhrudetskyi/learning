@@ -8,8 +8,6 @@ export class HerokuAppUiClient extends BaseAPP{
         this.brokenImagesPage = '/broken_images',
         this.basicAuthTextTag = '#content > div > p',
         this.newObjectButtonXPath = '//*[@id="content"]/div/button';
-        this.usernameFieldId = 'login_field';
-        this.passwordFieldId = 'password';
         this.deleteButtonCss = '.added-manually',
         this.imageCss      =  'img',
         this.imageAttribute = 'naturalWidth',
@@ -21,7 +19,7 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async openHomePage() {
-        return await super.goTo(this.startPage);
+        await super.goTo(this.startPage);
     }
 
     async openAddRemovePage() {
@@ -37,7 +35,8 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async clickOnAddElementButton(countOfElements = 1) {
-        super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
+        await super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
+        await super.waitForNewElementsToAppear(this.deleteButtonCss);
     }
 
     async clickDeleteButton(countOfTimes = 1) {
@@ -48,16 +47,8 @@ export class HerokuAppUiClient extends BaseAPP{
         return super.checkIfImagesIsLoaded(this.imageCss, this.imageAttribute)
     }
 
-    async countOfDeleteButtons() {
+    async getCountOfDeleteButtons() {
         return super.waitForNewElementsToAppear(this.deleteButtonCss)
-    }
-
-    async clickPasswordField() {
-        super.clickOnElementById(this.passwordFieldId);
-    }
-
-    async clickForgorPasswordButton() {
-        super.clickOnElementById(this.forgotPasswordButtonClass);
     }
 
     async findAuthSuccessText() {
@@ -66,14 +57,6 @@ export class HerokuAppUiClient extends BaseAPP{
 
     async findAuthNotSuccessText() {
         return super.findElementsByCss(this.basicAuthTextTag);
-    }
-
-    async inputUsernameField(text) {
-        super.typeText(this.usernameFieldId, text);
-    }
-
-    async inputPasswordField(text) {
-        super.typeText(this.passwordFieldId, text);
     }
 
     async quitFromBrowser() {

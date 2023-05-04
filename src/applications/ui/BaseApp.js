@@ -13,19 +13,8 @@ export class BaseAPP {
     }
 
     async goTo(browserPage) {
-        const driver = await this.driverPromise;
-        const page = await driver.get(browserPage);
-        return {
-            page,
-            getText: async function() {
-                return await page.getTitle();
-            }
-        }
-    }
-
-    async clickOnElementById(locator) {
-        this.driverPromise.then((driverPromise) => {
-            driverPromise.findElement(By.id(locator)).click();
+        return this.driverPromise.then((driverPromise) => {
+             return driverPromise.get(browserPage);
         });
     }
 
@@ -36,7 +25,6 @@ export class BaseAPP {
             await deleteButtons[0].click();
             deleteButtons = await driver.findElements(By.css(locator));
         }
-
         return {
             returnCountAfterClicking: function() {
                 return deleteButtons.length
@@ -60,7 +48,6 @@ export class BaseAPP {
             if(elements.length > 0) {
                 return elements;
             }
-            await driver.sleep(500);
         }
         throw new Error('Timeout exceeded while waiting for the element')
     }
@@ -98,6 +85,7 @@ export class BaseAPP {
                 if(await image.getAttribute(attribute) != 0) {
                     displayedImages.push(await image.getAttribute(attribute));
                 }
+                
             }
         }
 
@@ -112,12 +100,6 @@ export class BaseAPP {
                 return (images.length - displayedImages.length) 
             }
         }
-    }
-
-    async typeText(locator, text) {
-        this.driverPromise.then((driverPromise) => {
-            driverPromise.findElement(By.id(locator)).sendKeys(text);
-        });
     }
 
     async quit() {
