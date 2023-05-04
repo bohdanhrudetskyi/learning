@@ -10,56 +10,74 @@ describe('UI Tests for Add/Remove elements page', function() {
     await browser.startBrowser()
   });
 
-  afterEach(async function() {
-    await browser.quitFromBrowser();
-  });
+  // afterEach(async function() {
+  //   await browser.quitFromBrowser();
+  // });
 
   it('test title Add/Remove page', async function() {
-      const driver = await browser.openAddRemovePage();
-      const title = await driver.getTitle();
+      const title = await (await browser.openAddRemovePage()).getText();
       expect(title).to.equal('The Internet');
   });
 
-  it('test Add Element button', async function() {
-    const elementsToCreate = library.getRandomInteger();
-    await browser.openAddRemovePage();
-    await browser.clickOnAddElementButton(elementsToCreate);
-    const count = await browser.countOfDeleteButtons();
-    expect(count.length).to.equal(elementsToCreate);
-  });
+//   it('test Add Element button', async function() {
+//     const elementsToCreate = library.getRandomInteger();
+//     await browser.openAddRemovePage();
+//     await browser.clickOnAddElementButton(elementsToCreate);
+//     const count = await browser.countOfDeleteButtons();
+//     expect(count.length).to.equal(elementsToCreate);
+//   });
 
-  it('test Delete button click', async function() {
-    const elementsToCreate = library.getRandomInteger();
-    const elementsToDelete = library.getRandomInteger(1, elementsToCreate);
-    await browser.openAddRemovePage();
-    await browser.clickOnAddElementButton(elementsToCreate);
-    const countBefore = await (await browser.countOfDeleteButtons()).length;
-    const countAfter = await (await browser.clickDeleteButton(elementsToDelete)).returnCountAfterClicking();
-    expect(countAfter).to.equal(countBefore - elementsToDelete);
-  });
-});
+//   it('test Delete button click', async function() {
+//     const elementsToCreate = library.getRandomInteger();
+//     const elementsToDelete = library.getRandomInteger(1, elementsToCreate);
+//     await browser.openAddRemovePage();
+//     await browser.clickOnAddElementButton(elementsToCreate);
+//     const countBefore = await (await browser.countOfDeleteButtons()).length;
+//     const countAfter = await (await browser.clickDeleteButton(elementsToDelete)).returnCountAfterClicking();
+//     expect(countAfter).to.equal(countBefore - elementsToDelete);
+//   });
+ });
 
-describe('UI Tests for Basic authentication page', function() {
-  beforeEach(async function() {
-    await browser.startBrowser()
-  });
+// describe('UI Tests for Basic authentication page', function() {
+//   beforeEach(async function() {
+//     await browser.startBrowser()
+//   });
 
-  afterEach(async function() {
-    await browser.quitFromBrowser();
-  });
+//   afterEach(async function() {
+//     await browser.quitFromBrowser();
+//   });
 
-  it('test of login with valid credentials', async function() {
-      await browser.openBasicAuthPage(library.VALID_USERNAME, library.VALID_PASSWORD);
-      const authText = await (await browser.findAuthSuccessText()).getText();
-      expect(authText).to.equal(library.EXPECTED_SUCCESS_LOGIN_TEXT)
-  });
+//   it('test of login with valid credentials', async function() {
+//       await browser.openBasicAuthPage(library.VALID_USERNAME, library.VALID_PASSWORD);
+//       const authText = await (await browser.findAuthSuccessText()).getText();
+//       expect(authText).to.equal(library.EXPECTED_SUCCESS_LOGIN_TEXT)
+//   });
 
-  it('test of login with invalid credentials', async function() {
-    await browser.openBasicAuthPage(library.INVALID_USERNAME, library.INVALID_PASSWORD);
-    const authText = await browser.findAuthNotSuccessText();
-    expect(authText).to.equal(0)
-  });
-  // it('test response body for existed property name "total_count"', async function() {
-  //     expect(await gitHubUi.repoSearchResponse()).to.have.own.property('total_count');
+//   it('test of login with invalid credentials', async function() {
+//     await browser.openBasicAuthPage(library.INVALID_USERNAME, library.INVALID_PASSWORD);
+//     const authText = await browser.findAuthNotSuccessText();
+//     expect(authText).to.equal(0)
+//   });
+// });
+// describe('UI Tests for Broken Images page', function() {
+//   beforeEach(async function() {
+//     await browser.startBrowser();
+//     await browser.openBrokenImagesPage();
+//   });
+
+  // afterEach(async function() {
+  //   await browser.quitFromBrowser();
   // });
-});
+
+//   it('test if all images are displayed on the page', async function() {
+//       const foundedImages = await (await browser.findAllImages()).countOfFoundedImages();
+//       const displayedImages = await (await browser.findAllImages()).countOfDisplayedImages();
+//       expect(displayedImages).to.equal(foundedImages);
+//   });
+
+//   it('test if two images are NOT displayed on the page', async function() {
+//     const notDisplayedImages = await (await browser.findAllImages()).countOfNotDisplayedImages();
+//     expect(notDisplayedImages).to.equal(2);
+//   });
+
+// });

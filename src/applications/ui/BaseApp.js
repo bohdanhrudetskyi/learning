@@ -13,9 +13,14 @@ export class BaseAPP {
     }
 
     async goTo(browserPage) {
-        return this.driverPromise.then((driverPromise) => {
-            driverPromise.get(browserPage);
-        });
+        const driver = await this.driverPromise;
+        const page = await driver.get(browserPage);
+        return {
+            page,
+            getText: async function() {
+                return await page.getTitle();
+            }
+        }
     }
 
     async clickOnElementById(locator) {
@@ -80,6 +85,31 @@ export class BaseAPP {
             texts,
             getText: async function() {
                 return texts[0]
+            }
+        }
+    }
+
+    async checkIfImagesIsLoaded (locator, attribute) {
+        const driver = await this.driverPromise;
+        const images = await driver.findElements(By.css(locator));
+        let displayedImages = [];
+        if(images.length != 0) {
+            for (let image of images) {
+                if(await image.getAttribute(attribute) != 0) {
+                    displayedImages.push(await image.getAttribute(attribute));
+                }
+            }
+        }
+
+        return {
+            countOfFoundedImages: async function () {
+                return images.length
+            },
+            countOfDisplayedImages: async function() {
+                return displayedImages.length
+            },
+            countOfNotDisplayedImages: async function() {
+                return (images.length - displayedImages.length) 
             }
         }
     }

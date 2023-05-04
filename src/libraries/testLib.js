@@ -1,11 +1,14 @@
-//testLib file v. 0.0.0.1
+//-----------------------------------------------------------------------------
+//                      testLib file v. 0.0.0.1
+//-----------------------------------------------------------------------------
 import {
     VALID_SEARCH_REPO_NAME,
     VALID_USERNAME,
     VALID_PASSWORD,
     INVALID_USERNAME,
     INVALID_PASSWORD,
-    EXPECTED_SUCCESS_LOGIN_TEXT
+    EXPECTED_SUCCESS_LOGIN_TEXT,
+    COUNT_OF_IMAGES_ON_BROKEN_IMAGES_PAGE
 } from "../../src/libraries/constants.js"
 //------------This is a random generator for buttons clicking------------------
 export function getRandomInteger (min = 1, max = 100) {
@@ -19,5 +22,6 @@ export {
     VALID_PASSWORD,
     INVALID_USERNAME,
     INVALID_PASSWORD,
-    EXPECTED_SUCCESS_LOGIN_TEXT
+    EXPECTED_SUCCESS_LOGIN_TEXT,
+    COUNT_OF_IMAGES_ON_BROKEN_IMAGES_PAGE
 }
