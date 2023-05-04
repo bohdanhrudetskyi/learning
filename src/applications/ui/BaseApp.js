@@ -20,14 +20,14 @@ export class BaseAPP {
 
     async clickOnElementByCss(locator, countOfTimes) {
         const driver = await this.driverPromise;
-        let deleteButtons = await driver.findElements(By.css(locator));
+        let elements = await driver.findElements(By.css(locator));
         for (let i = 0; i < countOfTimes; i++) {            
-            await deleteButtons[0].click();
-            deleteButtons = await driver.findElements(By.css(locator));
+            await elements[0].click();
+            elements = await driver.findElements(By.css(locator));
         }
         return {
             returnCountAfterClicking: function() {
-                return deleteButtons.length
+                return elements.length
             }
         }
     }
@@ -63,6 +63,17 @@ export class BaseAPP {
         return title
     }
 
+    async findElementByXPath(locator) {
+        const driver = await this.driverPromise;
+        const element = await driver.findElement(By.xpath(locator));
+        return {
+            element,
+            getText: async function () {
+                return element.getText();
+            }
+        }
+    }
+
     async findElementsByCss(locator) {
         const driver = await this.driverPromise;
         const elements = await driver.findElements(By.css(locator));
@@ -75,9 +86,25 @@ export class BaseAPP {
             }
         }
         return {
-            texts,
-            getText: async function() {
+            elements,
+            getFirstText: async function() {
                 return texts[0]
+            },
+            getAllTexts: async function() {
+                return texts
+            },
+            getCountOfFoundedCheckboxes: async function() {
+                return elements.length
+            },
+            checkIfSelected: async function() {
+                return {
+                    first: async function() {
+                        return await elements[0].isSelected()
+                    },
+                    second: async function() {
+                        return await elements[1].isSelected()
+                    }
+                }
             }
         }
     }

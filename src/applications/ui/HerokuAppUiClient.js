@@ -4,8 +4,14 @@ export class HerokuAppUiClient extends BaseAPP{
         super(driver);
         this.startPage = 'http://the-internet.herokuapp.com';
         this.addRemovePage = '/add_remove_elements/',
+        this.addRemovePageHeaderCss = '#content > h3',
         this.basicAuthPage = '/basic_auth',
         this.brokenImagesPage = '/broken_images',
+        this.checkboxesPage  = '/checkboxes',
+        this.checkboxesCss  = '#checkboxes input[type="checkbox"]',
+        this.firstCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(1)',
+        this.secondCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(3)',
+        this.checkboxesHeaderCss = 'div.example h3',
         this.basicAuthTextTag = '#content > div > p',
         this.newObjectButtonXPath = '//*[@id="content"]/div/button';
         this.deleteButtonCss = '.added-manually',
@@ -34,6 +40,22 @@ export class HerokuAppUiClient extends BaseAPP{
         await super.goTo(this.startPage + this.brokenImagesPage);
     }
 
+    async openCheckboxesPage() {
+        await super.goTo(this.startPage + this.checkboxesPage);
+    }
+
+    async findAddRemovePageHeader() {
+        return await super.findElementsByCss(this.addRemovePageHeaderCss);
+    }
+
+    async findCheckboxesPageHeader() {
+        return await super.findElementsByCss(this.checkboxesHeaderCss);
+    }
+
+    async findCheckboxesOnPage() {
+        return await super.findElementsByCss(this.checkboxesCss);
+    }
+
     async clickOnAddElementButton(countOfElements = 1) {
         await super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
         await super.waitForNewElementsToAppear(this.deleteButtonCss);
@@ -41,6 +63,14 @@ export class HerokuAppUiClient extends BaseAPP{
 
     async clickDeleteButton(countOfTimes = 1) {
         return super.clickOnElementByCss(this.deleteButtonCss, countOfTimes)
+    }
+
+    async clickFirstCheckbox(countOfTimes = 1) {
+        return super.clickOnElementByCss(this.firstCheckboxCss, countOfTimes)
+    }
+
+    async clickSecondCheckbox(countOfTimes = 1) {
+        return super.clickOnElementByCss(this.secondCheckboxCss, countOfTimes)
     }
 
     async findAllImages() {
