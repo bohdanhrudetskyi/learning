@@ -5,10 +5,9 @@ const { expect } = chai;
 const browser = new HerokuAppUiClient();
 
 describe('UI Tests for Add/Remove elements page', function() {
-  let page;
   beforeEach(async function() {
     await browser.startBrowser();
-    page = await browser.openAddRemovePage();
+    await browser.openAddRemovePage();
   });
 
   afterEach(async function() {
@@ -16,13 +15,12 @@ describe('UI Tests for Add/Remove elements page', function() {
   });
 
   it('test title of Add/Remove page', async function() {
-      const title = await page.getTitle();
+      const title = await browser.getPageTitle();
       expect(title).to.equal(library.ADD_REMOVE_PAGE_TITLE);
   });
 
   it('test Add Element button', async function() {
     const elementsToCreate = library.getRandomInteger();
-    //await browser.openAddRemovePage();
     await browser.clickOnAddElementButton(elementsToCreate);
     const count = await browser.getCountOfDeleteButtons();
     expect(count.length).to.equal(elementsToCreate);
@@ -31,7 +29,6 @@ describe('UI Tests for Add/Remove elements page', function() {
   it('test Delete button click', async function() {
      const elementsToCreate = library.getRandomInteger();
      const elementsToDelete = library.getRandomInteger(1, elementsToCreate);
-     //await browser.openAddRemovePage();
      await browser.clickOnAddElementButton(elementsToCreate);
      const countAfterDeletion = await (await browser.clickDeleteButton(elementsToDelete)).returnCountAfterClicking();
      expect(countAfterDeletion).to.equal(elementsToCreate - elementsToDelete);

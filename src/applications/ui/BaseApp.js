@@ -57,6 +57,12 @@ export class BaseAPP {
         return driver.findElements(By.className(locator));
     }
 
+    async getPageTitle() {
+        const driver = await this.driverPromise;
+        const title = await driver.getTitle();
+        return title
+    }
+
     async findElementsByCss(locator) {
         const driver = await this.driverPromise;
         const elements = await driver.findElements(By.css(locator));

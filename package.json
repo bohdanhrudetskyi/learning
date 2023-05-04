@@ -1,11 +1,11 @@
 {
-  "name": "automation_training",
+  "name": "herokuapp_automatization_training",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha tests/ui/tests.js --timeout 10000"
+    "test": "mocha tests/ui/tests.js --timeout 10000 --reporter mochawesome --reporter-options reportDir=HerokuAutoTestsReport,reportFilename=HerokuAutoTestsResults"
   },
   "author": "bohdan.hrudetskyi",
   "license": "ISC",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "mochawesome": "^7.1.3",
     "webdriver-manager": "^12.1.9"
   }
 }
