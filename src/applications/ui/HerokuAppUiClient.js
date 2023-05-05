@@ -1,4 +1,5 @@
 import { BaseAPP } from './BaseApp.js';
+import * as library from "../../libraries/testLib.js"
 export class HerokuAppUiClient extends BaseAPP{
     constructor(driver) {
         super(driver);
@@ -8,7 +9,9 @@ export class HerokuAppUiClient extends BaseAPP{
         this.basicAuthPage = '/basic_auth',
         this.brokenImagesPage = '/broken_images',
         this.checkboxesPage  = '/checkboxes',
+        this.disappearingElementsPage = '/disappearing_elements',
         this.checkboxesCss  = '#checkboxes input[type="checkbox"]',
+        this.disappearingElementsCss = '#content > div > h3',
         this.firstCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(1)',
         this.secondCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(3)',
         this.checkboxesHeaderCss = 'div.example h3',
@@ -17,13 +20,13 @@ export class HerokuAppUiClient extends BaseAPP{
         this.deleteButtonCss = '.added-manually',
         this.imageCss      =  'img',
         this.imageAttribute = 'naturalWidth',
-        this.forgotPasswordButtonClass = 'label-link position-absolute top-0 right-0';
         this.browser = 'chrome';
     }
+//--------------------Browser-Section----------------------------------------------------    
     async startBrowser() {
-        await super.openBrowser(this.browser)
+        await super.openBrowser(this.browser);
     }
-
+//------------------Open-Functions-section-----------------------------------------------
     async openHomePage() {
         await super.goTo(this.startPage);
     }
@@ -44,41 +47,12 @@ export class HerokuAppUiClient extends BaseAPP{
         await super.goTo(this.startPage + this.checkboxesPage);
     }
 
+    async openDisappearingElementsPage() {
+        await super.goTo(this.startPage + this.disappearingElementsPage);
+    }
+//------------------Find-Functions-Section-----------------------------------------------
     async findAddRemovePageHeader() {
         return await super.findElementsByCss(this.addRemovePageHeaderCss);
-    }
-
-    async findCheckboxesPageHeader() {
-        return await super.findElementsByCss(this.checkboxesHeaderCss);
-    }
-
-    async findCheckboxesOnPage() {
-        return await super.findElementsByCss(this.checkboxesCss);
-    }
-
-    async clickOnAddElementButton(countOfElements = 1) {
-        await super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
-        await super.waitForNewElementsToAppear(this.deleteButtonCss);
-    }
-
-    async clickDeleteButton(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.deleteButtonCss, countOfTimes)
-    }
-
-    async clickFirstCheckbox(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.firstCheckboxCss, countOfTimes)
-    }
-
-    async clickSecondCheckbox(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.secondCheckboxCss, countOfTimes)
-    }
-
-    async findAllImages() {
-        return super.checkIfImagesIsLoaded(this.imageCss, this.imageAttribute)
-    }
-
-    async getCountOfDeleteButtons() {
-        return super.waitForNewElementsToAppear(this.deleteButtonCss)
     }
 
     async findAuthSuccessText() {
@@ -89,6 +63,63 @@ export class HerokuAppUiClient extends BaseAPP{
         return super.findElementsByCss(this.basicAuthTextTag);
     }
 
+    async findCheckboxesPageHeader() {
+        return await super.findElementsByCss(this.checkboxesHeaderCss);
+    }
+
+    async findDisappearingElementsHeader() {
+        return await super.findElementsByCss(this.disappearingElementsCss);
+    }
+
+    async findAllImages() {
+        return super.checkIfImagesIsLoaded(this.imageCss, this.imageAttribute);
+    }
+
+    async findCheckboxesOnPage() {
+        return await super.findElementsByCss(this.checkboxesCss);
+    }
+
+    async findHomeLink() {
+        return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_HOME_LINK_TEXT);
+    }
+
+    async findAboutLink() {
+        return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_ABOUT_LINK_TEXT);
+    }
+
+    async findContactUsLink() {
+        return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_CONTACT_US_LINK_TEXT);
+    }
+
+    async findPortfolioLink() {
+        return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_PORTFOLIO_LINK_TEXT);
+    }
+
+    async findGalleryLink() {
+        return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT);
+    }
+//-------------------Click-Functions-Section---------------------------------------------
+    async clickOnAddElementButton(countOfElements = 1) {
+        await super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
+        await super.waitForNewElementsToAppear(this.deleteButtonCss);
+    }
+
+    async clickDeleteButton(countOfTimes = 1) {
+        return super.clickOnElementByCss(this.deleteButtonCss, countOfTimes);
+    }
+
+    async clickFirstCheckbox(countOfTimes = 1) {
+        return super.clickOnElementByCss(this.firstCheckboxCss, countOfTimes);
+    }
+
+    async clickSecondCheckbox(countOfTimes = 1) {
+        return super.clickOnElementByCss(this.secondCheckboxCss, countOfTimes);
+    }
+//------------------Get-Functions-Section------------------------------------------------
+    async getCountOfDeleteButtons() {
+        return super.waitForNewElementsToAppear(this.deleteButtonCss);
+    }
+//------------------Quit-Browser-Function------------------------------------------------
     async quitFromBrowser() {
         return super.quit();
     }

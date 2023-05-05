@@ -57,6 +57,25 @@ export class BaseAPP {
         return driver.findElements(By.className(locator));
     }
 
+    async findElementsByLinkText(locator) {
+        const driver = await this.driverPromise;
+        const elements = await driver.findElements(By.linkText(locator));
+        const texts = [];
+        if(elements.length > 0) {
+            for (let element of elements) {
+                texts.push(await element.getText());
+            }
+        } else {
+            texts.push(false)
+        }
+        return {
+            elements,
+            getFirstText: async function() {
+                return await texts[0]
+            }
+        }
+    }
+
     async getPageTitle() {
         const driver = await this.driverPromise;
         const title = await driver.getTitle();

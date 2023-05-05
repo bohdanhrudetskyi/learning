@@ -174,3 +174,48 @@ describe('UI Tests for Checkboxes page', function() {
   });
 
 });
+
+describe('UI Tests for Disappearing Elements page', function() {
+  
+  beforeEach(async function() {
+    await browser.startBrowser();
+    await browser.openDisappearingElementsPage();
+  });
+
+  afterEach(async function() {
+    await browser.quitFromBrowser();
+  });
+
+  it('test disappearing elements header on the page', async function() {
+    const header = await (await browser.findDisappearingElementsHeader()).getFirstText();
+    expect(header).to.equal(library.DISAPPEARING_ELEMENTS_HEADER_TEXT);
+  });
+
+  it('test if home link is on the page', async function() {
+    const homeLink = await (await browser.findHomeLink()).getFirstText();
+    expect(homeLink).to.equal(library.DISAPPEARING_ELEMENTS_HOME_LINK_TEXT);
+  });
+
+  it('test if about link is on the page', async function() {
+    const aboutLink = await (await browser.findAboutLink()).getFirstText();
+    expect(aboutLink).to.equal(library.DISAPPEARING_ELEMENTS_ABOUT_LINK_TEXT);
+  });
+
+  it('test if contact us link is on the page', async function() {
+    const contactUsLink = await (await browser.findContactUsLink()).getFirstText();
+    expect(contactUsLink).to.equal(library.DISAPPEARING_ELEMENTS_CONTACT_US_LINK_TEXT);
+  });
+
+  it('test if portfolio link is on the page', async function() {
+    const portfolioLink = await (await browser.findPortfolioLink()).getFirstText();
+    expect(portfolioLink).to.equal(library.DISAPPEARING_ELEMENTS_PORTFOLIO_LINK_TEXT);
+  });
+
+  it('test if gallery link is on the page', async function() {
+    const galleryLink = await (await browser.findGalleryLink()).getFirstText();
+    expect(galleryLink).to.satisfy((val) => {
+      return val === false || val === library.DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT
+    });
+  });
+
+});
