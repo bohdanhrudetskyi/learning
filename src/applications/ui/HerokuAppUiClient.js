@@ -3,13 +3,13 @@ import * as library from "../../libraries/testLib.js"
 export class HerokuAppUiClient extends BaseAPP{
     constructor(driver) {
         super(driver);
-        this.startPage = 'http://the-internet.herokuapp.com';
-        this.addRemovePage = '/add_remove_elements/',
+        this.startPage = library.START_PAGE_URL,
+        this.addRemovePage = 'add_remove_elements/',
         this.addRemovePageHeaderCss = '#content > h3',
-        this.basicAuthPage = '/basic_auth',
-        this.brokenImagesPage = '/broken_images',
-        this.checkboxesPage  = '/checkboxes',
-        this.disappearingElementsPage = '/disappearing_elements',
+        this.basicAuthPage = 'basic_auth',
+        this.brokenImagesPage = 'broken_images',
+        this.checkboxesPage  = 'checkboxes',
+        this.disappearingElementsPage = 'disappearing_elements',
         this.checkboxesCss  = '#checkboxes input[type="checkbox"]',
         this.disappearingElementsCss = '#content > div > h3',
         this.firstCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(1)',
@@ -36,7 +36,7 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async openBasicAuthPage(username, password) {
-        await super.goTo('https://' +username+ ':' +password+ '@' + 'the-internet.herokuapp.com' + this.basicAuthPage);
+        await super.goTo('https://' +username+ ':' +password+ '@' + 'the-internet.herokuapp.com/' + this.basicAuthPage);
     }
 
     async openBrokenImagesPage() {
@@ -118,6 +118,10 @@ export class HerokuAppUiClient extends BaseAPP{
 //------------------Get-Functions-Section------------------------------------------------
     async getCountOfDeleteButtons() {
         return super.waitForNewElementsToAppear(this.deleteButtonCss);
+    }
+
+    async getCurrentUrl() {
+        return super.getCurrentPageUrl();
     }
 //------------------Quit-Browser-Function------------------------------------------------
     async quitFromBrowser() {

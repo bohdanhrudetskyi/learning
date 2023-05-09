@@ -18,3 +18,4 @@ export const DISAPPEARING_ELEMENTS_ABOUT_LINK_TEXT = 'About';
 export const DISAPPEARING_ELEMENTS_CONTACT_US_LINK_TEXT = 'Contact Us';
 export const DISAPPEARING_ELEMENTS_PORTFOLIO_LINK_TEXT = 'Portfolio';
 export const DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT = 'Gallery';
+export const START_PAGE_URL = 'http://the-internet.herokuapp.com/';

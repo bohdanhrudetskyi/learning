@@ -218,4 +218,10 @@ describe('UI Tests for Disappearing Elements page', function() {
     });
   });
 
+  it('test if home link navigates to the home page', async function() {
+    await (await browser.findHomeLink()).click();
+    const navigatedUrl = await browser.getCurrentUrl();
+    expect(navigatedUrl).to.equal(library.START_PAGE_URL);
+  });
+
 });

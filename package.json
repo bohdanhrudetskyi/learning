@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "base-64": "^1.0.0",
-    "chromedriver": "^112.0.0",
+    "chromedriver": "^112.0.1",
     "mocha": "^10.2.0",
     "node-fetch": "^3.3.1",
     "selenium-webdriver": "^4.9.0",

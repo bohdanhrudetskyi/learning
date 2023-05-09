@@ -72,6 +72,15 @@ export class BaseAPP {
             elements,
             getFirstText: async function() {
                 return await texts[0]
+            },
+            click: async function() {
+                if(elements.length > 0) {
+                    for (let element of elements) {
+                        await element.click();
+                    }
+                } else {
+                    throw new Error('The button is not found!')
+                }
             }
         }
     }
@@ -80,6 +89,12 @@ export class BaseAPP {
         const driver = await this.driverPromise;
         const title = await driver.getTitle();
         return title
+    }
+
+    async getCurrentPageUrl() {
+        const driver = await this.driverPromise;
+        const pageUrl = await driver.getCurrentUrl();
+        return pageUrl
     }
 
     async findElementByXPath(locator) {
