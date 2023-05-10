@@ -4,19 +4,8 @@ import * as locator from "../../libraries/locators.js"
 export class HerokuAppUiClient extends BaseAPP{
     constructor(driver) {
         super(driver);
-        this.addRemovePageHeaderCss = locator.addRemovePageHeaderCss,
-        this.checkboxesCss  = locator.checkboxesCss,
-        this.disappearingElementsHeaderCss = locator.disappearingElementsHeaderCss,
-        this.dragAndDropHeaderCss = locator.dragAndDropHeaderCss,
-        this.firstCheckboxCss = locator.firstCheckboxCss,
-        this.secondCheckboxCss = locator.secondCheckboxCss,
-        this.checkboxesHeaderCss = locator.checkboxesHeaderCss,
-        this.basicAuthTextTag = locator.basicAuthTextTag,
-        this.newObjectButtonXPath = locator.newObjectButtonXPath;
-        this.deleteButtonCss = locator.deleteButtonCss,
-        this.imageCss      =  locator.imageCss,
         this.imageAttribute = 'naturalWidth',
-        this.browser = 'chrome';
+        this.browser = 'chrome'
     }
 //--------------------Browser-Section----------------------------------------------------    
     async startBrowser() {
@@ -52,35 +41,35 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 //------------------Find-Functions-Section-----------------------------------------------
     async findAddRemovePageHeader() {
-        return await super.findElementsByCss(this.addRemovePageHeaderCss);
+        return await super.findElementsByCss(locator.ADD_REMOVE_PAGE_HEADER_CSS);
     }
 
     async findAuthSuccessText() {
-        return super.findElementsByCss(this.basicAuthTextTag);
+        return super.findElementsByCss(locator.BASIC_AUTH_TEXT_TAG);
     }
 
     async findAuthNotSuccessText() {
-        return super.findElementsByCss(this.basicAuthTextTag);
+        return super.findElementsByCss(locator.BASIC_AUTH_TEXT_TAG);
     }
 
     async findCheckboxesPageHeader() {
-        return await super.findElementsByCss(this.checkboxesHeaderCss);
+        return await super.findElementsByCss(locator.CHECKBOXES_HEADER_CSS);
     }
 
     async findDisappearingElementsHeader() {
-        return await super.findElementsByCss(this.disappearingElementsHeaderCss);
+        return await super.findElementsByCss(locator.DISAPPEARING_ELEMENTS_HEADER_CSS);
     }
 
     async findDragAndDropHeader() {
-        return await super.findElementsByCss(this.dragAndDropHeaderCss);
+        return await super.findElementsByCss(locator.DRAG_AND_DROP_HEADER_CSS);
     }
 
     async findAllImages() {
-        return super.checkIfImagesIsLoaded(this.imageCss, this.imageAttribute);
+        return super.checkIfImagesIsLoaded(locator.IMAGE_CSS, this.imageAttribute);
     }
 
     async findCheckboxesOnPage() {
-        return await super.findElementsByCss(this.checkboxesCss);
+        return await super.findElementsByCss(locator.CHECKBOXES_CSS);
     }
 
     async findHomeLink() {
@@ -104,24 +93,24 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 //-------------------Click-Functions-Section---------------------------------------------
     async clickOnAddElementButton(countOfElements = 1) {
-        await super.clickOnElementByXPath(this.newObjectButtonXPath, countOfElements);
-        await super.waitForNewElementsToAppear(this.deleteButtonCss);
+        await super.clickOnElementByXPath(locator.NEW_OBJECT_BUTTON_XPATH, countOfElements);
+        await super.waitForNewElementsToAppear(locator.DELETE_BUTTON_CSS);
     }
 
     async clickDeleteButton(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.deleteButtonCss, countOfTimes);
+        return super.clickOnElementByCss(locator.DELETE_BUTTON_CSS, countOfTimes);
     }
 
     async clickFirstCheckbox(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.firstCheckboxCss, countOfTimes);
+        return super.clickOnElementByCss(locator.FIRST_CHECKBOX_CSS, countOfTimes);
     }
 
     async clickSecondCheckbox(countOfTimes = 1) {
-        return super.clickOnElementByCss(this.secondCheckboxCss, countOfTimes);
+        return super.clickOnElementByCss(locator.SECOND_CHECKBOX_CSS, countOfTimes);
     }
 //------------------Get-Functions-Section------------------------------------------------
     async getCountOfDeleteButtons() {
-        return super.waitForNewElementsToAppear(this.deleteButtonCss);
+        return super.waitForNewElementsToAppear(locator.DELETE_BUTTON_CSS);
     }
 
     async getCurrentUrl() {
