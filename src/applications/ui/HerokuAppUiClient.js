@@ -1,24 +1,20 @@
 import { BaseAPP } from './BaseApp.js';
 import * as library from "../../libraries/testLib.js"
+import * as locator from "../../libraries/locators.js"
 export class HerokuAppUiClient extends BaseAPP{
     constructor(driver) {
         super(driver);
-        this.startPage = library.START_PAGE_URL,
-        this.addRemovePage = 'add_remove_elements/',
-        this.addRemovePageHeaderCss = '#content > h3',
-        this.basicAuthPage = 'basic_auth',
-        this.brokenImagesPage = 'broken_images',
-        this.checkboxesPage  = 'checkboxes',
-        this.disappearingElementsPage = 'disappearing_elements',
-        this.checkboxesCss  = '#checkboxes input[type="checkbox"]',
-        this.disappearingElementsCss = '#content > div > h3',
-        this.firstCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(1)',
-        this.secondCheckboxCss = '#checkboxes > input[type=checkbox]:nth-child(3)',
-        this.checkboxesHeaderCss = 'div.example h3',
-        this.basicAuthTextTag = '#content > div > p',
-        this.newObjectButtonXPath = '//*[@id="content"]/div/button';
-        this.deleteButtonCss = '.added-manually',
-        this.imageCss      =  'img',
+        this.addRemovePageHeaderCss = locator.addRemovePageHeaderCss,
+        this.checkboxesCss  = locator.checkboxesCss,
+        this.disappearingElementsHeaderCss = locator.disappearingElementsHeaderCss,
+        this.dragAndDropHeaderCss = locator.dragAndDropHeaderCss,
+        this.firstCheckboxCss = locator.firstCheckboxCss,
+        this.secondCheckboxCss = locator.secondCheckboxCss,
+        this.checkboxesHeaderCss = locator.checkboxesHeaderCss,
+        this.basicAuthTextTag = locator.basicAuthTextTag,
+        this.newObjectButtonXPath = locator.newObjectButtonXPath;
+        this.deleteButtonCss = locator.deleteButtonCss,
+        this.imageCss      =  locator.imageCss,
         this.imageAttribute = 'naturalWidth',
         this.browser = 'chrome';
     }
@@ -28,27 +24,31 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 //------------------Open-Functions-section-----------------------------------------------
     async openHomePage() {
-        await super.goTo(this.startPage);
+        await super.goTo(library.HOME_PAGE_URL);
     }
 
     async openAddRemovePage() {
-        return await super.goTo(this.startPage + this.addRemovePage);
+        return await super.goTo(library.HOME_PAGE_URL + library.ADD_REMOVE_PAGE_URL);
     }
 
     async openBasicAuthPage(username, password) {
-        await super.goTo('https://' +username+ ':' +password+ '@' + 'the-internet.herokuapp.com/' + this.basicAuthPage);
+        await super.goTo('https://' +username+ ':' +password+ '@' + 'the-internet.herokuapp.com/' + library.BASIC_AUTHENTICATION_PAGE_URL);
     }
 
     async openBrokenImagesPage() {
-        await super.goTo(this.startPage + this.brokenImagesPage);
+        await super.goTo(library.HOME_PAGE_URL + library.BROKEN_IMAGES_PAGE_URL);
     }
 
     async openCheckboxesPage() {
-        await super.goTo(this.startPage + this.checkboxesPage);
+        await super.goTo(library.HOME_PAGE_URL + library.CHECKBOXES_PAGE_URL);
     }
 
     async openDisappearingElementsPage() {
-        await super.goTo(this.startPage + this.disappearingElementsPage);
+        await super.goTo(library.HOME_PAGE_URL + library.DISAPPEARING_ELEMENTS_PAGE_URL);
+    }
+
+    async openDragAndDropPage() {
+        await super.goTo(library.HOME_PAGE_URL + library.DRAG_AND_DROP_PAGE_URL)
     }
 //------------------Find-Functions-Section-----------------------------------------------
     async findAddRemovePageHeader() {
@@ -68,7 +68,11 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async findDisappearingElementsHeader() {
-        return await super.findElementsByCss(this.disappearingElementsCss);
+        return await super.findElementsByCss(this.disappearingElementsHeaderCss);
+    }
+
+    async findDragAndDropHeader() {
+        return await super.findElementsByCss(this.dragAndDropHeaderCss);
     }
 
     async findAllImages() {

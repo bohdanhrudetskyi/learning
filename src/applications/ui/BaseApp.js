@@ -71,7 +71,12 @@ export class BaseAPP {
         return {
             elements,
             getFirstText: async function() {
-                return await texts[0]
+                if(elements.length > 0) {
+                    return await texts[0]
+                } else {
+                    throw new Error('The button is not found!')
+                }
+                
             },
             click: async function() {
                 if(elements.length > 0) {

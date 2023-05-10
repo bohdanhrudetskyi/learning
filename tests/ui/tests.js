@@ -45,7 +45,7 @@ describe('UI Tests for Add/Remove elements page', function() {
 describe('UI Tests for Basic authentication page', function() {
   
   beforeEach(async function() {
-    await browser.startBrowser()
+    await browser.startBrowser();
   });
 
   afterEach(async function() {
@@ -188,7 +188,7 @@ describe('UI Tests for Disappearing Elements page', function() {
 
   it('test disappearing elements header on the page', async function() {
     const header = await (await browser.findDisappearingElementsHeader()).getFirstText();
-    expect(header).to.equal(library.DISAPPEARING_ELEMENTS_HEADER_TEXT);
+    expect(header).to.equal(library.DISAPPEARING_ELEMENTS_PAGE_HEADER_TEXT);
   });
 
   it('test if home link is on the page', async function() {
@@ -211,17 +211,57 @@ describe('UI Tests for Disappearing Elements page', function() {
     expect(portfolioLink).to.equal(library.DISAPPEARING_ELEMENTS_PORTFOLIO_LINK_TEXT);
   });
 
-  it('test if gallery link is on the page', async function() {
+  it('test if gallery button is on the page', async function() {
     const galleryLink = await (await browser.findGalleryLink()).getFirstText();
-    expect(galleryLink).to.satisfy((val) => {
-      return val === false || val === library.DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT
-    });
+    expect(galleryLink).to.equal(library.DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT);
   });
 
   it('test if home link navigates to the home page', async function() {
     await (await browser.findHomeLink()).click();
-    const navigatedUrl = await browser.getCurrentUrl();
-    expect(navigatedUrl).to.equal(library.START_PAGE_URL);
+    const homePageUrl = await browser.getCurrentUrl();
+    expect(homePageUrl).to.equal(library.HOME_PAGE_URL);
+  });
+
+  it('test if about link navigates to the about page', async function() {
+    await (await browser.findAboutLink()).click();
+    const aboutPageUrl = await browser.getCurrentUrl();
+    expect(aboutPageUrl).to.equal(library.HOME_PAGE_URL + library.ABOUT_PAGE_URL);
+  });
+
+  it('test if contact us link navigates to the contact us page', async function() {
+    await (await browser.findContactUsLink()).click();
+    const contactUsPageUrl = await browser.getCurrentUrl();
+    expect(contactUsPageUrl).to.equal(library.HOME_PAGE_URL + library.CONTACT_US_PAGE_URL);
+  });
+
+  it('test if portfolio link navigates to the portfolio page', async function() {
+    await (await browser.findPortfolioLink()).click();
+    const portfolioPageUrl = await browser.getCurrentUrl();
+    expect(portfolioPageUrl).to.equal(library.HOME_PAGE_URL + library.PORTFOLIO_PAGE_URL);
+  });
+
+  it('test if gallery link navigates to the gallery page', async function() {
+    await (await browser.findGalleryLink()).click();
+    const galleryPageUrl = await browser.getCurrentUrl();
+    expect(galleryPageUrl).to.equal(library.HOME_PAGE_URL + library.GALLERY_PAGE_URL);
+  });
+
+});
+
+describe('UI Tests for Drag and Drop page', function() {
+  
+  beforeEach(async function() {
+    await browser.startBrowser();
+    await browser.openDragAndDropPage();
+  });
+
+  afterEach(async function() {
+    await browser.quitFromBrowser();
+  });
+
+  it('test drag and drop header on the page', async function() {
+    const header = await (await browser.findDragAndDropHeader()).getFirstText();
+    expect(header).to.equal(library.DRAG_AND_DROP_PAGE_HEADER_TEXT);
   });
 
 });
