@@ -54,7 +54,19 @@ export class BaseAPP {
 
     async findElementsByClass(locator) {
         const driver = await this.driverPromise;
-        return driver.findElements(By.className(locator));
+        return await driver.findElements(By.className(locator));
+    }
+
+    async findElementById(locator) {
+        const driver = await this.driverPromise;
+        return await driver.findElement(By.id(locator));
+    }
+
+    async dragAndDropElement(locatorSource, locatorTarget) {
+        const driver = await this.driverPromise;
+        const sourceElement = await this.findElementById(locatorSource);
+        const targetElement = await this.findElementById(locatorTarget);
+        await driver.actions({bridge:true}).dragAndDrop(sourceElement, targetElement).perform();
     }
 
     async findElementsByLinkText(locator) {
