@@ -1,6 +1,7 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder, By, Key, until } = require('selenium-webdriver');
+const assert = require('assert');
 
-describe('Drag and Drop', function () {
+describe('Drag and Drop Test', function () {
   let driver;
 
   beforeEach(async function () {
@@ -12,17 +13,18 @@ describe('Drag and Drop', function () {
     await driver.quit();
   });
 
-  it('should drag and drop element', async function () {
-    const source = await driver.findElement(By.id('column-a'));
-    const target = await driver.findElement(By.id('column-b'));
+  it('should drag and drop element successfully', async function () {
+    const sourceElement = await driver.findElement(By.id('column-a'));
+    const targetElement = await driver.findElement(By.id('column-b'));
 
-    const actions = driver.actions({ bridge: true });
-    await actions.dragAndDrop(source, target).perform();
+    // Perform drag and drop action
+    await driver.actions({ bridge: true }).dragAndDrop(sourceElement, targetElement).perform();
 
-    const columnA = await driver.findElement(By.id('column-a')).getText();
-    const columnB = await driver.findElement(By.id('column-b')).getText();
+    // Verify the text in the columns has been switched
+    const columnAText = await driver.wait(until.elementLocated(By.id('column-a'))).getText();
+    const columnBText = await driver.wait(until.elementLocated(By.id('column-b'))).getText();
 
-    expect(columnA).toBe('B');
-    expect(columnB).toBe('A');
+    assert.strictEqual(columnAText, 'B');
+    assert.strictEqual(columnBText, 'A');
   });
 });
