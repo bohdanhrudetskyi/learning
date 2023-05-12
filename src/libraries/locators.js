@@ -12,6 +12,13 @@ export const CHECKBOXES_HEADER_CSS = 'div.example h3';
 export const BASIC_AUTH_TEXT_TAG = '#content > div > p';
 export const DELETE_BUTTON_CSS = '.added-manually';
 export const IMAGE_CSS      =  'img';
+export const ELEMENT_A_ID = 'column-a';
+export const ELEMENT_B_ID = 'column-b';
+export const DRAG_AND_DROP_ELEMENTS_CLASS = 'column';
+export const DROPDOWN_HEADER_CSS = '#content > div > h3';
+export const DROPDOWN_LIST_ID = 'dropdown';
+export const DROPDOWN_OPTIONS_TAG = 'option';
+export const DROPDOWN_PAGE_SECOND_OPTION_CSS = '#dropdown > option:nth-child(2)';
 //------------------------------XPath's------------------------------------------------------------
 export const NEW_OBJECT_BUTTON_XPATH = '//*[@id="content"]/div/button';
 

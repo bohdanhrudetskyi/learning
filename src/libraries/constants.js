@@ -14,6 +14,7 @@ export const BROKEN_IMAGES_PAGE_URL = 'broken_images';
 export const CHECKBOXES_PAGE_URL = 'checkboxes';
 export const DISAPPEARING_ELEMENTS_PAGE_URL = 'disappearing_elements';
 export const DRAG_AND_DROP_PAGE_URL = 'drag_and_drop';
+export const DROPDOWN_PAGE_URL = 'dropdown';
 //-------------------------USER_CREDENTIALS--------------------------------------------------------
 export const VALID_USERNAME = 'admin';
 export const VALID_PASSWORD = 'admin';
@@ -31,6 +32,11 @@ export const DISAPPEARING_ELEMENTS_CONTACT_US_LINK_TEXT = 'Contact Us';
 export const DISAPPEARING_ELEMENTS_PORTFOLIO_LINK_TEXT = 'Portfolio';
 export const DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT = 'Gallery';
 export const DRAG_AND_DROP_PAGE_HEADER_TEXT = 'Drag and Drop';
+export const DROPDOWN_PAGE_HEADER_TEXT = 'Dropdown List';
+export const DROPDOWN_PAGE_FIRST_DROPDOWN_OPTION_TEXT = 'Please select an option';
+export const DROPDOWN_PAGE_SECOND_DROPDOWN_OPTION_TEXT = 'Option 1';
+export const DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT = 'Option 2';
 //-------------------------------------------------------------------------------------------------
 export const COUNT_OF_IMAGES_ON_BROKEN_IMAGES_PAGE = 4;
 export const NOT_DISPLAYED_IMAGES_ON_BI_PAGE = 2;
+export const DROPDOWN_PAGE_DROPDOWN_OPTIONS_COUNT = 3;

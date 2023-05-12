@@ -1,5 +1,5 @@
 import { BrowsersProvider } from "../../providers/service/browsers/browsersProvider.js"
-import { By } from 'selenium-webdriver'
+import { By, until } from 'selenium-webdriver'
 
 export class BaseAPP {
 
@@ -66,7 +66,17 @@ export class BaseAPP {
         const driver = await this.driverPromise;
         const sourceElement = await this.findElementById(locatorSource);
         const targetElement = await this.findElementById(locatorTarget);
-        await driver.actions({bridge:true}).dragAndDrop(sourceElement, targetElement).perform();
+        const actions = driver.actions({bridge:true});
+        await actions.dragAndDrop(sourceElement, targetElement).perform();
+
+        return {
+            getElementsTextInArray: async function() {
+                const columnAText = await driver.wait(until.elementLocated(By.id(locatorSource))).getText();
+                const columnBText = await driver.wait(until.elementLocated(By.id(locatorTarget))).getText();
+                const arrayOfTextsOfElements = [columnAText, columnBText]
+                return arrayOfTextsOfElements
+            }
+        }
     }
 
     async findElementsByLinkText(locator) {
@@ -130,7 +140,7 @@ export class BaseAPP {
         const elements = await driver.findElements(By.css(locator));
         const texts = [];
         if(elements.length == 0) {
-            return texts.length
+            return texts.length;
         } else {
             for (let element of elements) {
                 texts.push(await element.getText());
@@ -138,22 +148,28 @@ export class BaseAPP {
         }
         return {
             elements,
+            getCountOfFoundedElements: async function () {
+                return await elements.length;
+            },
             getFirstText: async function() {
-                return texts[0]
+                return texts[0];
             },
             getAllTexts: async function() {
-                return texts
+                return texts;
             },
             getCountOfFoundedCheckboxes: async function() {
-                return elements.length
+                return elements.length;
             },
             checkIfSelected: async function() {
                 return {
                     first: async function() {
-                        return await elements[0].isSelected()
+                        return await elements[0].isSelected();
                     },
                     second: async function() {
-                        return await elements[1].isSelected()
+                        return await elements[1].isSelected();
+                    },
+                    number: async function(number) {
+                        return await elements[number-1].isSelected();
                     }
                 }
             }

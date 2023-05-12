@@ -37,7 +37,11 @@ export class HerokuAppUiClient extends BaseAPP{
     }
 
     async openDragAndDropPage() {
-        await super.goTo(library.HOME_PAGE_URL + library.DRAG_AND_DROP_PAGE_URL)
+        await super.goTo(library.HOME_PAGE_URL + library.DRAG_AND_DROP_PAGE_URL);
+    }
+
+    async openDropdownPage() {
+        await super.goTo(library.HOME_PAGE_URL + library.DROPDOWN_PAGE_URL);
     }
 //------------------Find-Functions-Section-----------------------------------------------
     async findAddRemovePageHeader() {
@@ -62,6 +66,14 @@ export class HerokuAppUiClient extends BaseAPP{
 
     async findDragAndDropHeader() {
         return await super.findElementsByCss(locator.DRAG_AND_DROP_HEADER_CSS);
+    }
+
+    async findDropdownHeader() {
+        return await super.findElementsByCss(locator.DROPDOWN_HEADER_CSS);
+    }
+
+    async findDropdownOptions() {
+        return await super.findElementsByCss(locator.DROPDOWN_OPTIONS_TAG);
     }
 
     async findAllImages() {
@@ -91,6 +103,10 @@ export class HerokuAppUiClient extends BaseAPP{
     async findGalleryLink() {
         return await super.findElementsByLinkText(library.DISAPPEARING_ELEMENTS_GALLERY_LINK_TEXT);
     }
+
+    async findElementsOnDragAndDropPage() {
+        return await super.findElementsByClass(locator.DRAG_AND_DROP_ELEMENTS_CLASS);
+    }
 //-------------------Click-Functions-Section---------------------------------------------
     async clickOnAddElementButton(countOfElements = 1) {
         await super.clickOnElementByXPath(locator.NEW_OBJECT_BUTTON_XPATH, countOfElements);
@@ -108,6 +124,10 @@ export class HerokuAppUiClient extends BaseAPP{
     async clickSecondCheckbox(countOfTimes = 1) {
         return super.clickOnElementByCss(locator.SECOND_CHECKBOX_CSS, countOfTimes);
     }
+
+    async clickDropdownOption(optionNumber, countOfTimes = 1, ) {
+        return super.clickOnElementByCss('#dropdown > option:nth-child('+optionNumber+')', countOfTimes);
+    }
 //------------------Get-Functions-Section------------------------------------------------
     async getCountOfDeleteButtons() {
         return super.waitForNewElementsToAppear(locator.DELETE_BUTTON_CSS);
@@ -117,6 +137,14 @@ export class HerokuAppUiClient extends BaseAPP{
         return super.getCurrentPageUrl();
     }
 //------------------Quit-Browser-Function------------------------------------------------
+    async dragAndDropElementFromAToB() {
+        await super.dragAndDropElement(locator.ELEMENT_A_ID, locator.ELEMENT_B_ID);
+    }
+
+    async dragAndDropElementFromBToA() {
+        await super.dragAndDropElement(locator.ELEMENT_B_ID, locator.ELEMENT_A_ID);
+    }
+
     async quitFromBrowser() {
         return super.quit();
     }
