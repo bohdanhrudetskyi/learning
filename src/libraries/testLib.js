@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-//                      testLib file v. 0.0.0.2
+//                      testLib file v. 0.0.5
 //-----------------------------------------------------------------------------
 import {
     VALID_SEARCH_REPO_NAME,
@@ -36,7 +36,12 @@ import {
     DROPDOWN_PAGE_DROPDOWN_OPTIONS_COUNT,
     DROPDOWN_PAGE_FIRST_DROPDOWN_OPTION_TEXT,
     DROPDOWN_PAGE_SECOND_DROPDOWN_OPTION_TEXT,
-    DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT
+    DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT,
+    LOGIN_PAGE_URL,
+    VALID_LOGIN_USERNAME,
+    VALID_LOGIN_PASSWORD,
+    LOGGED_IN_PAGE_HEADER_TEXT,
+    LOGIN_PAGE_HEADER_TEXT
 } from "../../src/libraries/constants.js"
 //------------This is a random generator for buttons clicking------------------
 
@@ -80,5 +85,10 @@ export {
     DROPDOWN_PAGE_DROPDOWN_OPTIONS_COUNT,
     DROPDOWN_PAGE_FIRST_DROPDOWN_OPTION_TEXT,
     DROPDOWN_PAGE_SECOND_DROPDOWN_OPTION_TEXT,
-    DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT
+    DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT,
+    LOGIN_PAGE_URL,
+    VALID_LOGIN_USERNAME,
+    VALID_LOGIN_PASSWORD,
+    LOGGED_IN_PAGE_HEADER_TEXT,
+    LOGIN_PAGE_HEADER_TEXT
 }

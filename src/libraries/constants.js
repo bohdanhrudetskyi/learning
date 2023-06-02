@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------------------------------
-//           TESTING_CONSTANTS_FILE v.0.0.0.2
+//           TESTING_CONSTANTS_FILE v.0.0.5
 //-------------------------------------------------------------------------------------------------
 export const VALID_SEARCH_REPO_NAME = 'github';
 //---------------------------PAGES_URL's-----------------------------------------------------------
@@ -15,9 +15,12 @@ export const CHECKBOXES_PAGE_URL = 'checkboxes';
 export const DISAPPEARING_ELEMENTS_PAGE_URL = 'disappearing_elements';
 export const DRAG_AND_DROP_PAGE_URL = 'drag_and_drop';
 export const DROPDOWN_PAGE_URL = 'dropdown';
+export const LOGIN_PAGE_URL = 'login';
 //-------------------------USER_CREDENTIALS--------------------------------------------------------
 export const VALID_USERNAME = 'admin';
 export const VALID_PASSWORD = 'admin';
+export const VALID_LOGIN_USERNAME = 'tomsmith';
+export const VALID_LOGIN_PASSWORD = 'SuperSecretPassword!';
 export const INVALID_USERNAME = 'admin2';
 export const INVALID_PASSWORD = 'pass2';
 //--------------------------ELEMENTS_TEXT----------------------------------------------------------
@@ -36,6 +39,8 @@ export const DROPDOWN_PAGE_HEADER_TEXT = 'Dropdown List';
 export const DROPDOWN_PAGE_FIRST_DROPDOWN_OPTION_TEXT = 'Please select an option';
 export const DROPDOWN_PAGE_SECOND_DROPDOWN_OPTION_TEXT = 'Option 1';
 export const DROPDOWN_PAGE_THIRD_DROPDOWN_OPTION_TEXT = 'Option 2';
+export const LOGGED_IN_PAGE_HEADER_TEXT = 'Secure Area';
+export const LOGIN_PAGE_HEADER_TEXT = 'Login Page';
 //-------------------------------------------------------------------------------------------------
 export const COUNT_OF_IMAGES_ON_BROKEN_IMAGES_PAGE = 4;
 export const NOT_DISPLAYED_IMAGES_ON_BI_PAGE = 2;

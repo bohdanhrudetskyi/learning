@@ -407,3 +407,29 @@ describe('UI Tests for Dropdown page', function() {
   });
 
 });
+
+describe('UI Tests for Login Page', function() {
+  
+  beforeEach(async function() {
+    await browser.startBrowser();
+    await browser.openLoginPage();
+  });
+
+  afterEach(async function() {
+    await browser.quitFromBrowser();
+  });
+
+  it('test header of login page', async function() {
+    const header = await (await browser.findLoginPageHeader()).getFirstText();
+    expect(header).to.equal(library.LOGIN_PAGE_HEADER_TEXT);
+  });
+
+  it('test login with valid credentials on the login page', async function() {
+    await browser.sendValidLoginUsername();
+    await browser.sendValidLoginPassword();
+    await browser.clickLoginButton();
+    const loggedInPage = await (await browser.findLoggedUserPageHeader()).getFirstText();
+    expect(loggedInPage).to.equal(library.LOGGED_IN_PAGE_HEADER_TEXT);
+  });
+
+});
